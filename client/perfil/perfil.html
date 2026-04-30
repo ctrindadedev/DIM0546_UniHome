@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Perfil - UniHome</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/global.css" />
+    <link rel="stylesheet" href="perfil.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a href="../home/home.html" class="logo"
+          ><span class="logo-mark">U</span> UniHome</a
+        >
+        <nav class="sidebar-nav">
+          <a href="../dashboard/dashboard.html"
+            ><span class="icon">🏠</span> Início</a
+          >
+          <a href="../imoveis/imoveis.html"
+            ><span class="icon">🏢</span> Buscar Imóveis</a
+          >
+          <a href="../matches/matches.html"
+            ><span class="icon">🤝</span> Achar Colegas</a
+          >
+          <a href="#"><span class="icon">💬</span> Meus Grupos</a>
+          <a href="perfil.html" class="active"
+            ><span class="icon">⚙️</span> Meu Perfil</a
+          >
+        </nav>
+      </aside>
+
+      <main class="app-main">
+        <header class="app-header">
+          <button class="menu-toggle" data-menu-toggle aria-label="Menu">
+            ☰
+          </button>
+          <div class="search-bar">
+            <span>🔍</span><input type="text" placeholder="Buscar..." />
+          </div>
+          <div class="avatar-wrap">
+            <img
+              src="https://i.pravatar.cc/100?img=12"
+              class="avatar"
+              data-avatar-toggle
+              alt="Avatar"
+            />
+            <div class="dropdown" id="user-dropdown">
+              <a href="perfil.html">Meu Perfil</a>
+              <a href="#">Configurações</a>
+              <hr />
+              <a href="../home/home.html">Sair</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="app-content">
+          <div class="page-head">
+            <h1>Meu Perfil de Convivência</h1>
+            <p>Quanto melhor você se descrever, melhores serão seus matches.</p>
+          </div>
+
+          <div class="profile-wrap">
+            <form class="profile-card" id="profile-form">
+              <div class="profile-photo-row">
+                <img
+                  src="https://i.pravatar.cc/200?img=12"
+                  class="profile-photo"
+                  alt="Foto de perfil"
+                />
+                <div>
+                  <strong
+                    style="
+                      color: var(--blue-900);
+                      display: block;
+                      font-size: 18px;
+                    "
+                    >Foto de perfil</strong
+                  >
+                  <p
+                    style="
+                      color: var(--muted);
+                      font-size: 14px;
+                      margin: 4px 0 10px;
+                    "
+                  >
+                    JPG ou PNG, máx 5MB
+                  </p>
+                  <button type="button" class="btn btn-outline">
+                    Trocar Foto
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label>Nome completo</label>
+                  <input type="text" value="Lucas Andrade" />
+                </div>
+                <div class="form-field">
+                  <label>Universidade</label>
+                  <select>
+                    <option>USP</option>
+                    <option>Unicamp</option>
+                    <option>Mackenzie</option>
+                    <option>Unifesp</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label>Curso</label>
+                  <input type="text" value="Ciência da Computação" />
+                </div>
+                <div class="form-field">
+                  <label>Semestre</label>
+                  <select>
+                    <option>1º</option>
+                    <option>2º</option>
+                    <option selected>3º</option>
+                    <option>4º</option>
+                    <option>5º+</option>
+                  </select>
+                </div>
+              </div>
+
+              <h2 class="section-title">Hábitos de Convivência</h2>
+
+              <div class="habit">
+                <div class="habit-label">
+                  <strong>Nível de Limpeza</strong
+                  ><span class="val" data-output="clean">4</span>/5
+                </div>
+                <input
+                  type="range"
+                  id="clean"
+                  class="slider"
+                  min="1"
+                  max="5"
+                  value="4"
+                />
+              </div>
+
+              <div class="habit">
+                <div class="habit-label">
+                  <strong>Nível de Barulho (tolerância)</strong
+                  ><span class="val" data-output="noise">3</span>/5
+                </div>
+                <input
+                  type="range"
+                  id="noise"
+                  class="slider"
+                  min="1"
+                  max="5"
+                  value="3"
+                />
+              </div>
+
+              <div class="habit">
+                <div class="habit-label">
+                  <strong>Sociabilidade (gosta de receber visitas?)</strong
+                  ><span class="val" data-output="social">2</span>/5
+                </div>
+                <input
+                  type="range"
+                  id="social"
+                  class="slider"
+                  min="1"
+                  max="5"
+                  value="2"
+                />
+              </div>
+
+              <div class="habit">
+                <div class="habit-label">
+                  <strong>Horário de dormir</strong>
+                </div>
+                <div class="radio-group">
+                  <span class="radio-pill">
+                    <input type="radio" name="sleep" id="s1" /><label for="s1"
+                      >Antes das 22h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="sleep" id="s2" checked /><label
+                      for="s2"
+                      >22h - 00h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="sleep" id="s3" /><label for="s3"
+                      >00h - 02h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="sleep" id="s4" /><label for="s4"
+                      >Depois das 02h</label
+                    >
+                  </span>
+                </div>
+              </div>
+
+              <div class="habit">
+                <div class="habit-label">
+                  <strong>Horário de acordar</strong>
+                </div>
+                <div class="radio-group">
+                  <span class="radio-pill">
+                    <input type="radio" name="wake" id="w1" checked /><label
+                      for="w1"
+                      >Antes das 7h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="wake" id="w2" /><label for="w2"
+                      >7h - 9h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="wake" id="w3" /><label for="w3"
+                      >9h - 11h</label
+                    >
+                  </span>
+                  <span class="radio-pill">
+                    <input type="radio" name="wake" id="w4" /><label for="w4"
+                      >Depois das 11h</label
+                    >
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-field" style="margin-top: 20px">
+                <label
+                  >Conte um pouco sobre você e o que procura em um colega</label
+                >
+                <textarea
+                  placeholder="Ex: Sou tranquilo, gosto de cozinhar nos finais de semana e procuro alguém organizado e respeitoso..."
+                >
+ Sou estudante de CC, organizado e gosto de um ambiente tranquilo durante a semana. Procuro colegas comunicativos e respeitosos.</textarea
+                >
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 12px;
+                  justify-content: flex-end;
+                  margin-top: 24px;
+                "
+              >
+                <button type="button" class="btn btn-ghost">Cancelar</button>
+                <button type="submit" class="btn btn-primary">
+                  Salvar Perfil
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../shared/main.js"></script>
+    <script src="perfil.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achar Colegas - UniHome</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Referenciando CSS Global e CSS Local -->
+    <link rel="stylesheet" href="../shared/global.css" />
+    <link rel="stylesheet" href="matches.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a href="../home/home.html" class="logo"
+          ><span class="logo-mark">U</span> UniHome</a
+        >
+        <nav class="sidebar-nav">
+          <a href="../dashboard/dashboard.html"
+            ><span class="icon">🏠</span> Início</a
+          >
+          <a href="../imoveis/imoveis.html"
+            ><span class="icon">🏢</span> Buscar Imóveis</a
+          >
+          <a href="matches.html" class="active"
+            ><span class="icon">🤝</span> Achar Colegas</a
+          >
+          <a href="#"><span class="icon">💬</span> Meus Grupos</a>
+          <a href="../perfil/perfil.html"
+            ><span class="icon">⚙️</span> Meu Perfil</a
+          >
+        </nav>
+      </aside>
+
+      <main class="app-main">
+        <header class="app-header">
+          <button class="menu-toggle" data-menu-toggle aria-label="Menu">
+            ☰
+          </button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Buscar por nome, curso..." />
+          </div>
+          <div class="avatar-wrap">
+            <img
+              src="https://i.pravatar.cc/100?img=12"
+              class="avatar"
+              data-avatar-toggle
+              alt="Avatar"
+            />
+            <div class="dropdown" id="user-dropdown">
+              <a href="../perfil/perfil.html">Meu Perfil</a>
+              <a href="#">Configurações</a>
+              <hr />
+              <a href="../home/home.html">Sair</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="app-content">
+          <div class="page-head">
+            <h1>Encontre seus colegas ideais</h1>
+            <p>Perfis ordenados por compatibilidade com seus hábitos.</p>
+          </div>
+          <div class="layout-with-sidebar">
+            <aside class="filters">
+              <h3>Filtros</h3>
+              <div class="filter-group">
+                <label>Universidade</label>
+                <select>
+                  <option>Mesma que a minha</option>
+                  <option>USP</option>
+                  <option>Unicamp</option>
+                  <option>Mackenzie</option>
+                  <option>Todas</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label>Hábitos similares</label>
+                <select>
+                  <option>Sim</option>
+                  <option>Não importa</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label>Compatibilidade mínima</label>
+                <!-- integrar o script de update do slider  q tem na página de perfil -->
+                <input
+                  type="range"
+                  min="50"
+                  max="100"
+                  value="75"
+                  class="slider"
+                />
+              </div>
+              <div class="filter-group">
+                <label>Gênero</label>
+                <select>
+                  <option>Qualquer</option>
+                  <option>Feminino</option>
+                  <option>Masculino</option>
+                  <option>Não-binário</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-block" data-filter-apply>
+                Aplicar Filtros
+              </button>
+            </aside>
+            <div class="grid grid-3" id="matches"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../shared/main.js"></script>
+    <script src="matches.js"></script>
+  </body>
+</html>

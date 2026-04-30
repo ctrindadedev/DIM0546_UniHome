@@ -1,0 +1,107 @@
+/* Layout com Sidebar e Filtros */
+.layout-with-sidebar {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+}
+
+.page-head {
+  margin-bottom: 24px;
+}
+.page-head h1 {
+  font-size: 26px;
+  color: var(--blue-900);
+  font-weight: 800;
+}
+.page-head p {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Menu de Filtros Lateral */
+.filters {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.filters h3 {
+  font-size: 15px;
+  color: var(--blue-900);
+  margin-bottom: 16px;
+}
+.filter-group {
+  margin-bottom: 18px;
+}
+.filter-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-900);
+  margin-bottom: 6px;
+}
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg);
+  outline: none;
+}
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--blue-500);
+}
+
+/* Cards de Propriedades */
+.property-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.property-img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  background: #e2e8f0;
+}
+.property-body {
+  padding: 18px;
+}
+.property-price {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blue-900);
+}
+.property-price small {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.property-addr {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 4px 0 12px;
+}
+.property-meta {
+  display: flex;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.rating {
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 14px;
+}

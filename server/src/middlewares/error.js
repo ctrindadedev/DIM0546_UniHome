@@ -1,0 +1,1 @@
+//padronização dos erros - usar material do notion como ref

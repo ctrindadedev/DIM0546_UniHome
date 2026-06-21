@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: unihome_db
+    restart: always
+    environment:
+      POSTGRES_USER: unihome_user
+      POSTGRES_PASSWORD: unihome_password
+      POSTGRES_DB: unihome_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - unihome_pgdata:/var/lib/postgresql/data
+
+volumes:
+  unihome_pgdata:

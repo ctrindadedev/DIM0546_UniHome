@@ -2,8 +2,9 @@ require('./processHandlers')
 
 const express = require('express')
 const requestId = require('./middlewares/requestId')
-const errorHandler = require('./middlewares/error')
+const routes = require('./routes')
 const { NotFoundError } = require('./errors')
+const errorHandler = require('./middlewares/error')
 
 const app = express()
 
@@ -12,14 +13,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(requestId)
 
-// Rotas
-
-//  Rota não encontrada (deve ficar após todas as rotas)
+// Rotas (rota não encontrada deve ficar após todas as rotas)
+app.use('/api', routes)
 app.use((req, _res, next) => {
     next(new NotFoundError(`Rota ${req.method} ${req.path}`))
 })
 
-// Error handler global (deve ser o ultimo middleware)
 app.use(errorHandler)
 
 module.exports = app

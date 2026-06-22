@@ -1,5 +1,9 @@
+import { PropertiesApi } from "../shared/api/properties.api.js";
+import { ApiError } from "../shared/api/api-error.js";
+
 const properties = [
   {
+    id: 1,
     img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80",
     price: 1800,
     addr: "Vila Mariana, São Paulo",
@@ -8,6 +12,7 @@ const properties = [
     rating: 4.8,
   },
   {
+    id: 2,
     img: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80",
     price: 1200,
     addr: "Butantã – 600m USP",
@@ -16,6 +21,7 @@ const properties = [
     rating: 4.5,
   },
   {
+    id: 3,
     img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=80",
     price: 2300,
     addr: "Pinheiros",
@@ -24,6 +30,7 @@ const properties = [
     rating: 4.9,
   },
   {
+    id: 4,
     img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=80",
     price: 950,
     addr: "República – Centro",
@@ -32,6 +39,7 @@ const properties = [
     rating: 4.2,
   },
   {
+    id: 5,
     img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=700&q=80",
     price: 2100,
     addr: "Perdizes",
@@ -40,6 +48,7 @@ const properties = [
     rating: 4.7,
   },
   {
+    id: 6,
     img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80",
     price: 1650,
     addr: "Vila Madalena",
@@ -65,7 +74,7 @@ if (grid) {
           <span>🚿 ${p.baths} banheiro${p.baths > 1 ? "s" : ""}</span>
           <span class="rating">⭐ ${p.rating}/5</span>
         </div>
-        <button class="btn btn-primary btn-block">Ver Detalhes</button>
+        <button class="btn btn-primary btn-block" data-property-detail="${p.id}">Ver Detalhes</button>
       </div>
     </div>
   `,
@@ -79,5 +88,29 @@ document.querySelectorAll("[data-filter-apply]").forEach((btn) => {
     e.preventDefault();
     btn.textContent = "Filtrando...";
     setTimeout(() => (btn.textContent = "Aplicar Filtros"), 600);
+  });
+});
+
+
+document.querySelectorAll("[data-property-detail]").forEach((btn) => {
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const id = btn.dataset.propertyDetail;
+    const originalText = btn.textContent;
+    btn.textContent = "Buscando...";
+
+    try {
+      const { data } = await PropertiesApi.getById(id);
+      alert(`${data.title}\n${data.address}\nR$ ${data.price}`);
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 404) {
+        alert("Este imóvel ainda não está cadastrado no banco de dados.");
+      } else {
+        alert("Não foi possível conectar à API. Verifique se o servidor está rodando.");
+      }
+      console.error(err);
+    } finally {
+      btn.textContent = originalText;
+    }
   });
 });

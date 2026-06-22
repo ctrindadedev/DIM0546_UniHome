@@ -1,25 +1,40 @@
-/* Layout com Sidebar e Filtros (herdado de global/imóveis) */
 .layout-with-sidebar {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 280px minmax(0, 1fr);
   gap: 24px;
+  align-items: start;
 }
 
 .page-head {
   margin-bottom: 24px;
 }
+
 .page-head h1 {
   font-size: 26px;
   color: var(--blue-900);
   font-weight: 800;
 }
+
 .page-head p {
   color: var(--muted);
   margin-top: 4px;
 }
 
-/* Card de Match (Colega) */
+.filters {
+  position: sticky;
+  top: 96px;
+}
+
+#compatibility-value {
+  color: var(--blue-700);
+  font-weight: 700;
+}
+
 .match-card {
+  min-width: 0;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -27,10 +42,12 @@
   text-align: center;
   transition: var(--transition);
 }
+
 .match-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
+
 .match-avatar {
   width: 88px;
   height: 88px;
@@ -39,43 +56,106 @@
   object-fit: cover;
   border: 3px solid var(--blue-100);
 }
+
 .match-card h4 {
   color: var(--blue-900);
   margin-bottom: 4px;
 }
+
 .match-card .course {
+  min-height: 34px;
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.35;
   margin-bottom: 14px;
 }
 
-/* Barra de Compatibilidade */
 .compat-bar {
-  background: var(--bg);
+  width: 100%;
   height: 10px;
-  border-radius: 999px;
   overflow: hidden;
+  background: var(--bg);
+  border-radius: 999px;
   margin-bottom: 6px;
 }
+
 .compat-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--blue-500), var(--orange));
   border-radius: 999px;
 }
+
 .compat-label {
+  color: var(--blue-700);
   font-size: 13px;
   font-weight: 700;
-  color: var(--blue-700);
   margin-bottom: 14px;
 }
 
-/* Ações (Botões no Card) */
+.match-reasons {
+  min-height: 90px;
+  margin: 0 0 18px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.match-reasons li + li {
+  margin-top: 5px;
+}
+
 .match-actions {
   display: flex;
   gap: 8px;
+  margin-top: auto;
 }
+
 .match-actions .btn {
+  min-width: 0;
   flex: 1;
-  padding: 9px 12px;
+  padding: 9px 10px;
   font-size: 13px;
+  white-space: nowrap;
+}
+
+.match-state {
+  grid-column: 1 / -1;
+  padding: 48px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.match-state-error {
+  color: #b42318;
+}
+
+[data-filter-apply]:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+@media (max-width: 960px) {
+  .filters {
+    position: static;
+  }
+
+  .match-card {
+    min-height: 410px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-head h1 {
+    font-size: 24px;
+  }
+
+  .match-card {
+    min-height: 0;
+  }
+
+  .match-reasons {
+    min-height: 0;
+  }
 }

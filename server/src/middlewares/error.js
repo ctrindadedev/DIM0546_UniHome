@@ -19,7 +19,7 @@ function handlePrismaError(err) {
 }
 
 function handleZodError(err) {
-    const details = err.errors.map((e) => ({
+    const details = err.issues.map((e) => ({
         field: e.path.join('.'),
         message: e.message,
     }))

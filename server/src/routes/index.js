@@ -6,5 +6,6 @@ router.get('/ping', (_req, res) => {
 })
 
 router.use('/properties', require('../modules/properties/property.route'))
+router.use('/matches', require('../modules/matches/match.route'))
 
 module.exports = router

@@ -1,41 +1,126 @@
-const matches = [
-  { img: 32, name: "Mariana Souza", course: "Engenharia – USP", pct: 95 },
-  { img: 45, name: "Pedro Lima", course: "Direito – Mackenzie", pct: 88 },
-  { img: 23, name: "Ana Carolina", course: "Medicina – Unifesp", pct: 82 },
-  { img: 7, name: "Rafael Costa", course: "Arquitetura – USP", pct: 79 },
-  { img: 49, name: "Júlia Mendes", course: "Psicologia – PUC", pct: 76 },
-  { img: 60, name: "Bruno Alves", course: "Computação – Unicamp", pct: 73 },
-];
+import { MatchesApi } from "../shared/api/matches.api.js";
+import { ApiError } from "../shared/api/api-error.js";
 
+const currentUserId = 1;
 const grid = document.getElementById("matches");
+const searchInput = document.getElementById("match-search");
+const studyRoutineInput = document.getElementById("study-routine");
+const acceptsPetsInput = document.getElementById("accepts-pets");
+const compatibilityInput = document.getElementById("min-compatibility");
+const compatibilityValue = document.getElementById("compatibility-value");
+const filterButton = document.querySelector("[data-filter-apply]");
 
-if (grid) {
-  grid.innerHTML = matches
+let matches = [];
+
+function escapeHtml(value) {
+  const element = document.createElement("div");
+  element.textContent = value;
+  return element.innerHTML;
+}
+
+function renderMatches(items) {
+  if (!items.length) {
+    grid.innerHTML = '<p class="match-state">Nenhum colega encontrado.</p>';
+    return;
+  }
+
+  grid.innerHTML = items
     .map(
-      (m) => `
-    <div class="match-card">
-      <img class="match-avatar" src="https://i.pravatar.cc/200?img=${m.img}" alt="${m.name}"/>
-      <h4>${m.name}</h4>
-      <div class="course">${m.course}</div>
-      <div class="compat-bar">
-        <div class="compat-fill" style="width:${m.pct}%"></div>
-      </div>
-      <div class="compat-label">Compatibilidade: ${m.pct}%</div>
-      <div class="match-actions">
-        <button class="btn btn-outline">Ver Perfil</button>
-        <button class="btn btn-primary">Mensagem</button>
-      </div>
-    </div>
-  `,
+      (match) => `
+        <article class="match-card">
+          <img
+            class="match-avatar"
+            src="https://i.pravatar.cc/200?img=${match.userId + 20}"
+            alt="${escapeHtml(match.name)}"
+          />
+          <h4>${escapeHtml(match.name)}</h4>
+          <div class="course">
+            ${escapeHtml(match.course)} · ${escapeHtml(match.university)}
+          </div>
+          <div class="compat-bar">
+            <div
+              class="compat-fill"
+              style="width: ${match.compatibility}%"
+            ></div>
+          </div>
+          <div class="compat-label">
+            Compatibilidade: ${match.compatibility}%
+          </div>
+          <ul class="match-reasons">
+            ${match.reasons
+              .slice(0, 3)
+              .map((reason) => `<li>${escapeHtml(reason)}</li>`)
+              .join("")}
+          </ul>
+          <div class="match-actions">
+            <a
+              class="btn btn-outline"
+              href="../perfil/perfil.html?userId=${match.userId}"
+            >
+              Ver Perfil
+            </a>
+            <button class="btn btn-primary" data-message-user="${match.userId}">
+              Mensagem
+            </button>
+          </div>
+        </article>
+      `,
     )
     .join("");
 }
 
-// Filtro simulado
-document.querySelectorAll("[data-filter-apply]").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    btn.textContent = "Filtrando...";
-    setTimeout(() => (btn.textContent = "Aplicar Filtros"), 600);
-  });
+function applySearch() {
+  const term = searchInput.value.trim().toLocaleLowerCase("pt-BR");
+  const filteredMatches = matches.filter((match) =>
+    [match.name, match.course, match.university].some((value) =>
+      value.toLocaleLowerCase("pt-BR").includes(term),
+    ),
+  );
+
+  renderMatches(filteredMatches);
+}
+
+function getFilters() {
+  return {
+    minCompatibility: compatibilityInput.value,
+    studyRoutine: studyRoutineInput.value,
+    acceptsPets: acceptsPetsInput.value,
+  };
+}
+
+async function loadMatches() {
+  grid.innerHTML = '<p class="match-state">Buscando colegas...</p>';
+  filterButton.disabled = true;
+
+  try {
+    const response = await MatchesApi.getByUserId(currentUserId, getFilters());
+    matches = response.data;
+    applySearch();
+  } catch (error) {
+    const message =
+      error instanceof ApiError
+        ? error.data?.error?.message || error.message
+        : "Não foi possível conectar à API.";
+
+    grid.innerHTML = `<p class="match-state match-state-error">${escapeHtml(message)}</p>`;
+  } finally {
+    filterButton.disabled = false;
+  }
+}
+
+compatibilityInput.addEventListener("input", () => {
+  compatibilityValue.value = `${compatibilityInput.value}%`;
 });
+
+filterButton.addEventListener("click", loadMatches);
+searchInput.addEventListener("input", applySearch);
+
+grid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-message-user]");
+
+  if (button) {
+    window.alert("Conversa disponível em breve.");
+  }
+});
+
+loadMatches();

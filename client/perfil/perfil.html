@@ -14,44 +14,26 @@
   <body>
     <div class="app">
       <aside class="sidebar">
-        <a href="../home/home.html" class="logo"
-          ><span class="logo-mark">U</span> UniHome</a
-        >
+        <a href="../home/home.html" class="logo"><span class="logo-mark">U</span> UniHome</a>
         <nav class="sidebar-nav">
-          <a href="../dashboard/dashboard.html"
-            ><span class="icon">🏠</span> Início</a
-          >
-          <a href="../imoveis/imoveis.html"
-            ><span class="icon">🏢</span> Buscar Imóveis</a
-          >
-          <a href="../anunciar/anunciar.html"
-            ><span class="icon">➕</span> Anunciar Imóvel</a
-          >
-          <a href="../matches/matches.html"
-            ><span class="icon">🤝</span> Achar Colegas</a
-          >
+          <a href="../dashboard/dashboard.html"><span class="icon">🏠</span> Início</a>
+          <a href="../imoveis/imoveis.html"><span class="icon">🏢</span> Buscar Imóveis</a>
+          <a href="../anunciar/anunciar.html"><span class="icon">➕</span> Anunciar Imóvel</a>
+          <a href="../matches/matches.html"><span class="icon">🤝</span> Achar Colegas</a>
           <a href="#"><span class="icon">💬</span> Meus Grupos</a>
-          <a href="perfil.html" class="active"
-            ><span class="icon">⚙️</span> Meu Perfil</a
-          >
+          <a href="perfil.html" class="active"><span class="icon">⚙️</span> Meu Perfil</a>
         </nav>
       </aside>
 
       <main class="app-main">
         <header class="app-header">
-          <button class="menu-toggle" data-menu-toggle aria-label="Menu">
-            ☰
-          </button>
+          <button class="menu-toggle" data-menu-toggle aria-label="Menu">☰</button>
           <div class="search-bar">
-            <span>🔍</span><input type="text" placeholder="Buscar..." />
+            <span>🔍</span>
+            <input type="text" placeholder="Buscar colegas, imóveis, universidades..." />
           </div>
           <div class="avatar-wrap">
-            <img
-              src="https://i.pravatar.cc/100?img=12"
-              class="avatar"
-              data-avatar-toggle
-              alt="Avatar"
-            />
+            <img src="https://i.pravatar.cc/100?img=12" class="avatar" data-avatar-toggle data-avatar-preview alt="Avatar" />
             <div class="dropdown" id="user-dropdown">
               <a href="perfil.html">Meu Perfil</a>
               <a href="#">Configurações</a>
@@ -63,203 +45,167 @@
 
         <div class="app-content">
           <div class="page-head">
-            <h1>Meu Perfil de Convivência</h1>
-            <p>Quanto melhor você se descrever, melhores serão seus matches.</p>
+            <div>
+              <h1>Meu Perfil</h1>
+              <p>Dados acadêmicos, contato e preferências usadas nos matches.</p>
+            </div>
+            <span class="profile-status" id="profile-status">Carregando perfil...</span>
           </div>
 
-          <div class="profile-wrap">
+          <div class="profile-layout">
+            <section class="profile-summary" aria-label="Resumo do perfil">
+              <img src="https://i.pravatar.cc/200?img=12" class="profile-photo" data-photo-preview alt="Foto de perfil" />
+              <h2 data-summary-name>Carregando...</h2>
+              <p data-summary-course>UFRN</p>
+              <div class="summary-grid">
+                <span><strong data-summary-clean>4</strong> Limpeza</span>
+                <span><strong data-summary-noise>3</strong> Barulho</span>
+                <span><strong data-summary-social>3</strong> Social</span>
+              </div>
+              <div class="summary-tags" data-summary-tags></div>
+            </section>
+
             <form class="profile-card" id="profile-form">
-              <div class="profile-photo-row">
-                <img
-                  src="https://i.pravatar.cc/200?img=12"
-                  class="profile-photo"
-                  alt="Foto de perfil"
-                />
-                <div>
-                  <strong
-                    style="
-                      color: var(--blue-900);
-                      display: block;
-                      font-size: 18px;
-                    "
-                    >Foto de perfil</strong
-                  >
-                  <p
-                    style="
-                      color: var(--muted);
-                      font-size: 14px;
-                      margin: 4px 0 10px;
-                    "
-                  >
-                    JPG ou PNG, máx 5MB
-                  </p>
-                  <button type="button" class="btn btn-outline">
-                    Trocar Foto
-                  </button>
+              <fieldset>
+                <legend>Dados pessoais</legend>
+                <div class="form-row">
+                  <label class="form-field">
+                    Nome completo
+                    <input type="text" name="name" required minlength="3" />
+                  </label>
+                  <label class="form-field">
+                    E-mail
+                    <input type="email" name="email" required />
+                  </label>
                 </div>
-              </div>
 
-              <div class="form-row">
-                <div class="form-field">
-                  <label>Nome completo</label>
-                  <input type="text" value="Lucas Andrade" />
+                <div class="form-row">
+                  <label class="form-field">
+                    Telefone
+                    <input type="text" name="phone" placeholder="(84) 99999-0000" />
+                  </label>
+                  <label class="form-field">
+                    Foto de perfil
+                    <input type="url" name="avatarUrl" placeholder="https://..." />
+                  </label>
                 </div>
-                <div class="form-field">
-                  <label>Universidade</label>
-                  <select>
-                    <option>USP</option>
-                    <option>Unicamp</option>
-                    <option>Mackenzie</option>
-                    <option>Unifesp</option>
-                  </select>
-                </div>
-              </div>
+              </fieldset>
 
-              <div class="form-row">
-                <div class="form-field">
-                  <label>Curso</label>
-                  <input type="text" value="Ciência da Computação" />
+              <fieldset>
+                <legend>Dados acadêmicos</legend>
+                <div class="form-row">
+                  <label class="form-field">
+                    Universidade
+                    <select name="university" required>
+                      <option value="UFRN">UFRN</option>
+                      <option value="UFERSA">UFERSA</option>
+                      <option value="IFRN">IFRN</option>
+                      <option value="UnP">UnP</option>
+                    </select>
+                  </label>
+                  <label class="form-field">
+                    Curso
+                    <input type="text" name="course" required minlength="2" />
+                  </label>
                 </div>
-                <div class="form-field">
-                  <label>Semestre</label>
-                  <select>
-                    <option>1º</option>
-                    <option>2º</option>
-                    <option selected>3º</option>
-                    <option>4º</option>
-                    <option>5º+</option>
-                  </select>
-                </div>
-              </div>
 
-              <h2 class="section-title">Hábitos de Convivência</h2>
-
-              <div class="habit">
-                <div class="habit-label">
-                  <strong>Nível de Limpeza</strong
-                  ><span class="val" data-output="clean">4</span>/5
+                <div class="form-row compact-row">
+                  <label class="form-field">
+                    Semestre
+                    <select name="semester" required>
+                      <option value="1º">1º</option>
+                      <option value="2º">2º</option>
+                      <option value="3º">3º</option>
+                      <option value="4º">4º</option>
+                      <option value="5º">5º</option>
+                      <option value="6º">6º</option>
+                      <option value="7º+">7º+</option>
+                    </select>
+                  </label>
+                  <label class="form-field">
+                    Bairro desejado
+                    <input type="text" name="neighborhood" required minlength="3" />
+                  </label>
                 </div>
-                <input
-                  type="range"
-                  id="clean"
-                  class="slider"
-                  min="1"
-                  max="5"
-                  value="4"
-                />
-              </div>
+              </fieldset>
 
-              <div class="habit">
-                <div class="habit-label">
-                  <strong>Nível de Barulho (tolerância)</strong
-                  ><span class="val" data-output="noise">3</span>/5
+              <fieldset>
+                <legend>Hábitos de convivência</legend>
+                <div class="habit">
+                  <div class="habit-label"><strong>Nível de limpeza</strong><span><b data-output="cleanlinessLevel">4</b>/5</span></div>
+                  <input type="range" name="cleanlinessLevel" class="slider" min="1" max="5" value="4" />
                 </div>
-                <input
-                  type="range"
-                  id="noise"
-                  class="slider"
-                  min="1"
-                  max="5"
-                  value="3"
-                />
-              </div>
 
-              <div class="habit">
-                <div class="habit-label">
-                  <strong>Sociabilidade (gosta de receber visitas?)</strong
-                  ><span class="val" data-output="social">2</span>/5
+                <div class="habit">
+                  <div class="habit-label"><strong>Tolerância a barulho</strong><span><b data-output="noiseToleranceLevel">3</b>/5</span></div>
+                  <input type="range" name="noiseToleranceLevel" class="slider" min="1" max="5" value="3" />
                 </div>
-                <input
-                  type="range"
-                  id="social"
-                  class="slider"
-                  min="1"
-                  max="5"
-                  value="2"
-                />
-              </div>
 
-              <div class="habit">
-                <div class="habit-label">
-                  <strong>Horário de dormir</strong>
+                <div class="habit">
+                  <div class="habit-label"><strong>Sociabilidade</strong><span><b data-output="socialLevel">3</b>/5</span></div>
+                  <input type="range" name="socialLevel" class="slider" min="1" max="5" value="3" />
                 </div>
-                <div class="radio-group">
-                  <span class="radio-pill">
-                    <input type="radio" name="sleep" id="s1" /><label for="s1"
-                      >Antes das 22h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="sleep" id="s2" checked /><label
-                      for="s2"
-                      >22h - 00h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="sleep" id="s3" /><label for="s3"
-                      >00h - 02h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="sleep" id="s4" /><label for="s4"
-                      >Depois das 02h</label
-                    >
-                  </span>
-                </div>
-              </div>
 
-              <div class="habit">
-                <div class="habit-label">
-                  <strong>Horário de acordar</strong>
+                <div class="form-row compact-row">
+                  <label class="form-field">
+                    Horário de dormir
+                    <select name="sleepTime">
+                      <option value="antes-22">Antes das 22h</option>
+                      <option value="22-00">22h - 00h</option>
+                      <option value="00-02">00h - 02h</option>
+                      <option value="depois-02">Depois das 02h</option>
+                    </select>
+                  </label>
+                  <label class="form-field">
+                    Horário de acordar
+                    <select name="wakeTime">
+                      <option value="antes-7">Antes das 7h</option>
+                      <option value="7-9">7h - 9h</option>
+                      <option value="9-11">9h - 11h</option>
+                      <option value="depois-11">Depois das 11h</option>
+                    </select>
+                  </label>
                 </div>
-                <div class="radio-group">
-                  <span class="radio-pill">
-                    <input type="radio" name="wake" id="w1" checked /><label
-                      for="w1"
-                      >Antes das 7h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="wake" id="w2" /><label for="w2"
-                      >7h - 9h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="wake" id="w3" /><label for="w3"
-                      >9h - 11h</label
-                    >
-                  </span>
-                  <span class="radio-pill">
-                    <input type="radio" name="wake" id="w4" /><label for="w4"
-                      >Depois das 11h</label
-                    >
-                  </span>
+
+                <div class="form-row compact-row">
+                  <label class="form-field">
+                    Rotina de estudos
+                    <select name="studyRoutine">
+                      <option value="manha">Manhã</option>
+                      <option value="tarde">Tarde</option>
+                      <option value="noite">Noite</option>
+                      <option value="flexivel">Flexível</option>
+                    </select>
+                  </label>
+                  <div class="checks-field">
+                    <label><input type="checkbox" name="acceptsPets" /> Aceita pets</label>
+                    <label><input type="checkbox" name="hasPets" /> Tenho pet</label>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
 
-              <div class="form-field" style="margin-top: 20px">
-                <label
-                  >Conte um pouco sobre você e o que procura em um colega</label
-                >
-                <textarea
-                  placeholder="Ex: Sou tranquilo, gosto de cozinhar nos finais de semana e procuro alguém organizado e respeitoso..."
-                >
- Sou estudante de CC, organizado e gosto de um ambiente tranquilo durante a semana. Procuro colegas comunicativos e respeitosos.</textarea
-                >
-              </div>
+              <fieldset>
+                <legend>Moradia e descrição</legend>
+                <div class="form-row compact-row">
+                  <label class="form-field">
+                    Orçamento mínimo
+                    <input type="number" name="budgetMin" min="0" step="50" required />
+                  </label>
+                  <label class="form-field">
+                    Orçamento máximo
+                    <input type="number" name="budgetMax" min="0" step="50" required />
+                  </label>
+                </div>
 
-              <div
-                style="
-                  display: flex;
-                  gap: 12px;
-                  justify-content: flex-end;
-                  margin-top: 24px;
-                "
-              >
-                <button type="button" class="btn btn-ghost">Cancelar</button>
-                <button type="submit" class="btn btn-primary">
-                  Salvar Perfil
-                </button>
+                <label class="form-field full-field">
+                  Sobre você
+                  <textarea name="bio" required minlength="20" placeholder="Descreva sua rotina, preferências e o que procura em colegas de moradia."></textarea>
+                </label>
+              </fieldset>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost" data-reset-profile>Recarregar</button>
+                <button type="submit" class="btn btn-primary" data-save-profile>Salvar Perfil</button>
               </div>
             </form>
           </div>
@@ -268,6 +214,6 @@
     </div>
 
     <script src="../shared/main.js"></script>
-    <script src="perfil.js"></script>
+    <script type="module" src="perfil.js"></script>
   </body>
 </html>

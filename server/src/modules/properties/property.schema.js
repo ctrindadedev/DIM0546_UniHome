@@ -8,6 +8,7 @@ const createPropertySchema = z.object({
     description: z.string().min(20, "Forneça uma descrição melhor")
 });
 
+
 const propertyIdSchema = z.object({
     id: z.coerce.number().int().positive()
 });

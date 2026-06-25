@@ -11,6 +11,11 @@ router.post(
 );
 
 router.get(
+    '/',
+    propertyController.getAll
+);
+
+router.get(
     '/:id',
     validate(schema.propertyIdSchema, 'params'),
     propertyController.getById

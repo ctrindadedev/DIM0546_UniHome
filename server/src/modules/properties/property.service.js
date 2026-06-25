@@ -1,9 +1,9 @@
 const prisma = require('../../config/database');
-const { info } = require("../../utils/logger");
+const logger = require("../../utils/logger");
 const { NotFoundError } = require("../../errors/AppError");
 
 async function createProperty(data, reqId) {
-    info({ reqId }, 'Salvando nova propriedade no banco de dados');
+    logger.info({ reqId }, 'Salvando nova propriedade no banco de dados');
 
     const property = await prisma.property.create({
         data: data
@@ -13,14 +13,14 @@ async function createProperty(data, reqId) {
 }
 
 async function getProperties(reqId) {
-    info({ reqId }, 'Buscando todas propriedades cadastradas');
+    logger.info({ reqId }, 'Buscando todas propriedades cadastradas');
     return prisma.property.findMany({
         orderBy: { createdAt: 'desc' }
     });
 }
 
 async function getPropertyById(id, reqId) {
-    info({ reqId, propertyId: id }, 'Buscando imóvel específico no banco');
+    logger.info({ reqId, propertyId: id }, 'Buscando imóvel específico no banco');
 
     const property = await prisma.property.findUnique({
         where: { id: id }
@@ -34,7 +34,7 @@ async function getPropertyById(id, reqId) {
 }
 
 async function updateProperty(id, data, reqId) {
-    info({ reqId, propertyId: id }, 'Iniciando atualização do imóvel');
+    logger.info({ reqId, propertyId: id }, 'Iniciando atualização do imóvel');
 
     const existingProperty = await prisma.property.findUnique({
         where: { id: id }
@@ -53,7 +53,7 @@ async function updateProperty(id, data, reqId) {
 }
 
 async function deleteProperty(id, reqId) {
-    info({ reqId, propertyId: id }, 'Iniciando exclusão do imóvel');
+    logger.info({ reqId, propertyId: id }, 'Iniciando exclusão do imóvel');
 
     const existingProperty = await prisma.property.findUnique({
         where: { id: id }

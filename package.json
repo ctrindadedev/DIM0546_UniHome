@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "docker compose up -d && concurrently --names \"API,CLIENT\" --prefix-colors \"blue,green\" \"npm --prefix server run dev\" \"npx http-server client -p 5500 -o --cors\"",
     "db:up": "docker compose up -d",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "db:migrate": "npm --prefix server run db:migrate"
   },
   "devDependencies": {
     "concurrently": "^9.0.0",

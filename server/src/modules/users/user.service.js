@@ -4,17 +4,17 @@ const { NotFoundError } = require('../../errors/AppError');
 
 const demoUser = {
     id: 1,
-    name: 'Iury Fredson',
-    email: 'iury.fredson@ufrn.edu.br',
-    phone: '(84) 99999-0000',
+    name: 'João Victor',
+    email: 'joao.victor@ufrn.edu.br',
+    phone: '(84) 99999-1001',
     university: 'UFRN',
     course: 'Tecnologia da Informação',
     semester: '5º',
     avatarUrl: 'https://i.pravatar.cc/200?img=12',
-    bio: 'Estudante organizado, com rotina de estudos durante a noite e preferência por ambientes tranquilos durante a semana.',
+    bio: 'Estudante da UFRN procurando moradia próxima ao campus central.',
     profile: {
-        cleanlinessLevel: 4,
-        noiseToleranceLevel: 3,
+        cleanlinessLevel: 5,
+        noiseToleranceLevel: 2,
         socialLevel: 3,
         sleepTime: '22-00',
         wakeTime: 'antes-7',

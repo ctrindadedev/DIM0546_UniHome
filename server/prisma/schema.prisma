@@ -1,5 +1,3 @@
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,4 +15,37 @@ model Property {
   address     String
   description String
   createdAt   DateTime @default(now())
+}
+
+model User {
+  id         Int             @id @default(autoincrement())
+  name       String
+  email      String          @unique
+  phone      String?
+  university String
+  course     String
+  semester   String
+  avatarUrl  String?
+  bio        String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  profile    HousingProfile?
+}
+
+model HousingProfile {
+  id                  Int      @id @default(autoincrement())
+  userId              Int      @unique
+  cleanlinessLevel    Int
+  noiseToleranceLevel Int
+  socialLevel         Int
+  sleepTime           String
+  wakeTime            String
+  studyRoutine        String
+  acceptsPets         Boolean
+  hasPets             Boolean
+  budgetMin           Float
+  budgetMax           Float
+  neighborhood        String
+  updatedAt           DateTime @updatedAt
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -1,0 +1,14 @@
+{
+  "name": "unihome",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "docker compose up -d && concurrently --names \"API,CLIENT\" --prefix-colors \"blue,green\" \"npm --prefix server run dev\" \"npx http-server client -p 5500 -o --cors\"",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "http-server": "^14.0.0"
+  }
+}

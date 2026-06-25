@@ -1,19 +1,34 @@
 const propertyService = require('./property.service');
-const catchAsync = require('../../utils/catchAsync');
-const { NotFoundError } = require('../../errors');
 
+const create = async (req, res) => {
+    const property = await propertyService.createProperty(req.body, req.id);
+    res.status(201).json({ success: true, data: property });
+};
 
-const create = catchAsync(async (req, res) => {
-    const newProperty = await propertyService.createProperty(req.body);
-    return res.status(201).json({ success: true, data: newProperty });
-});
+const getAll = async (req, res) => {
+    const properties = await propertyService.getProperties(req.id);
+    res.status(200).json({ success: true, data: properties });
+};
 
-const getById = catchAsync(async (req, res) => {
-    const property = await propertyService.getPropertyById(req.params.id);
+const getById = async (req, res) => {
+    const property = await propertyService.getPropertyById(req.params.id, req.id);
+    res.status(200).json({ success: true, data: property });
+};
 
-    if (!property) throw new NotFoundError('Imóvel');
+const update = async (req, res) => {
+    const property = await propertyService.updateProperty(req.params.id, req.body, req.id);
+    res.status(200).json({ success: true, data: property });
+};
 
-    return res.status(200).json({ success: true, data: property });
-});
+const remove = async (req, res) => {
+    const result = await propertyService.deleteProperty(req.params.id, req.id);
+    res.status(200).json({ success: true, data: result });
+};
 
-module.exports = { create, getById };
+module.exports = {
+    create,
+    getAll,
+    getById,
+    update,
+    remove
+};

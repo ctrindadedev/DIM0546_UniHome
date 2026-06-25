@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anunciar Imóvel - UniHome</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/global.css" />
+    <link rel="stylesheet" href="anunciar.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a href="../home/home.html" class="logo"
+          ><span class="logo-mark">U</span> UniHome</a
+        >
+        <nav class="sidebar-nav">
+          <a href="../dashboard/dashboard.html"
+            ><span class="icon">🏠</span> Início</a
+          >
+          <a href="../imoveis/imoveis.html"
+            ><span class="icon">🏢</span> Buscar Imóveis</a
+          >
+          <a href="anunciar.html" class="active"
+            ><span class="icon">➕</span> Anunciar Imóvel</a
+          >
+          <a href="../matches/matches.html"
+            ><span class="icon">🤝</span> Achar Colegas</a
+          >
+          <a href="#"><span class="icon">💬</span> Meus Grupos</a>
+          <a href="../perfil/perfil.html"
+            ><span class="icon">⚙️</span> Meu Perfil</a
+          >
+        </nav>
+      </aside>
+      <main class="app-main">
+        <header class="app-header">
+          <button class="menu-toggle" data-menu-toggle>☰</button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input
+              type="text"
+              placeholder="Endereço, bairro, universidade..."
+            />
+          </div>
+          <div class="avatar-wrap">
+            <img
+              src="https://i.pravatar.cc/100?img=12"
+              class="avatar"
+              data-avatar-toggle
+              alt=""
+            />
+            <div class="dropdown" id="user-dropdown">
+              <a href="../perfil/perfil.html">Meu Perfil</a>
+              <a href="#">Configurações</a>
+              <hr />
+              <a href="../home/home.html">Sair</a>
+            </div>
+          </div>
+        </header>
+        <div class="app-content">
+          <div class="page-head">
+            <h1>Anunciar Imóvel</h1>
+            <p>Preencha os dados do imóvel que deseja anunciar para estudantes.</p>
+          </div>
+
+          <div class="form-wrap">
+            <div class="form-card">
+              <div id="feedback" class="feedback hidden"></div>
+
+              <form id="property-form" novalidate>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="title">Título do anúncio</label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      placeholder="Ex: Apartamento próximo à UFRN, 2 quartos"
+                      required
+                    />
+                    <span class="field-error" id="title-error"></span>
+                  </div>
+                  <div class="form-field">
+                    <label for="price">Aluguel mensal (R$)</label>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      placeholder="Ex: 1200"
+                      min="1"
+                      required
+                    />
+                    <span class="field-error" id="price-error"></span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="beds">Número de quartos</label>
+                    <input
+                      type="number"
+                      id="beds"
+                      name="beds"
+                      placeholder="Ex: 2"
+                      min="1"
+                      required
+                    />
+                    <span class="field-error" id="beds-error"></span>
+                  </div>
+                  <div class="form-field">
+                    <label for="address">Endereço completo</label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      placeholder="Ex: Rua das Flores, 123 - Lagoa Nova, Natal/RN"
+                      required
+                    />
+                    <span class="field-error" id="address-error"></span>
+                  </div>
+                </div>
+
+                <div class="form-field form-field-full">
+                  <label for="description">Descrição</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Descreva o imóvel: comodidades, proximidade de universidades, transporte público, etc."
+                    required
+                  ></textarea>
+                  <span class="field-error" id="description-error"></span>
+                </div>
+
+                <div class="form-actions">
+                  <button type="reset" class="btn btn-ghost">Limpar</button>
+                  <button type="submit" class="btn btn-primary" id="submit-btn">
+                    Publicar Anúncio
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../shared/main.js"></script>
+    <script src="anunciar.js"></script>
+  </body>
+</html>

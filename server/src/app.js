@@ -1,6 +1,7 @@
 require('./processHandlers')
 
 const express = require('express')
+const cors = require('cors')
 const requestId = require('./middlewares/requestId')
 const routes = require('./routes')
 const { NotFoundError } = require('./errors')
@@ -9,6 +10,7 @@ const errorHandler = require('./middlewares/error')
 const app = express()
 
 //Middlewares globais
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(requestId)
